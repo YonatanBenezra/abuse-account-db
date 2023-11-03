@@ -1,0 +1,50 @@
+{
+  "name": "clean_code",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "build": "node server.js"
+  },
+  "engines": {
+    "node": ">=14.20.1"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
+    "axios": "^1.5.1",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.9",
+    "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.1.0",
+    "express-rate-limit": "^5.5.1",
+    "helmet": "^4.6.0",
+    "hpp": "^0.2.3",
+    "html-to-text": "^8.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.4",
+    "mongoose": "^6.0.11",
+    "morgan": "^1.10.0",
+    "node-schedule": "^2.1.1",
+    "nodemailer": "^6.9.1",
+    "nodemon": "^2.0.20",
+    "slugify": "^1.6.1",
+    "validator": "^13.6.0",
+    "xss-clean": "^0.1.1",
+    "node-gyp": "^8.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.4.0",
+    "eslint-config-airbnb": "^19.0.2",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.1",
+    "parcel-bundler": "^1.12.5",
+    "prettier": "^2.5.0"
+  }
+}
