@@ -8,13 +8,13 @@ export default function AbuseProfileForm() {
   const { register, handleSubmit, reset } = useForm();
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/abuseprofiles/")
+      .get("https://abuseaccountdb.onrender.com/api/abuseprofiles/")
       .then((response) => setDbLength(response.data.data.data.length));
   }, []);
 
   const onSubmit = (data) => {
     data.categories = categories;
-    axios.post("http://localhost:8000/api/abuseprofiles/", data).then(() => {
+    axios.post("https://abuseaccountdb.onrender.com/api/abuseprofiles/", data).then(() => {
       setDbLength(dbLength + 1);
       reset();
     });
