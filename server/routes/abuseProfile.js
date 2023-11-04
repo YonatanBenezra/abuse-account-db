@@ -7,7 +7,7 @@ const authController = require('../controllers/authController');
 router
   .route('/')
   .get(abuseProfileController.getAllAbuseProfiles)
-  .post(abuseProfileController.createAbuseProfile);
+  .post(abuseProfileController.createOrUpdateProfile);
 
 // Routes for getting, updating, and deleting a specific AbuseProfile
 router

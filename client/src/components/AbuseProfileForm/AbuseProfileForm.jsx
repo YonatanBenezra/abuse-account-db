@@ -6,18 +6,25 @@ export default function AbuseProfileForm() {
   const [categories, setCategories] = useState([]);
   const [dbLength, setDbLength] = useState(0);
   const { register, handleSubmit, reset } = useForm();
-  useEffect(() => {
+
+  const checkDbLength = () => {
     axios
-      .get("https://abuseaccountdb.onrender.com/api/abuseprofiles/")
+      .get(`${import.meta.env.VITE_API_URL}/api/abuseprofiles/`)
       .then((response) => setDbLength(response.data.data.data.length));
+  };
+
+  useEffect(() => {
+    checkDbLength();
   }, []);
 
   const onSubmit = (data) => {
     data.categories = categories;
-    axios.post("https://abuseaccountdb.onrender.com/api/abuseprofiles/", data).then(() => {
-      setDbLength(dbLength + 1);
-      reset();
-    });
+    axios
+      .post(`${import.meta.env.VITE_API_URL}/api/abuseprofiles/`, data)
+      .then(() => {
+        checkDbLength();
+        reset();
+      });
   };
   const onChange = (event) => {
     categories.includes(event.target.id)

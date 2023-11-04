@@ -53,19 +53,6 @@ const userSchema = new mongoose.Schema({
     default: true,
     select: false,
   },
-  // IDs of finished exercises associated with the user
-  finishedExercises: [
-    { type: mongoose.Schema.Types.ObjectId, ref: 'Exercise' },
-  ],
-  // Count of consecutive days the user has coded
-  codeStrike: {
-    type: Number,
-    default: 0,
-  },
-  // Date of the user's last coding activity
-  lastCodedDate: {
-    type: Date,
-  },
 });
 
 // Middleware: Hash the user's password before saving it to the database

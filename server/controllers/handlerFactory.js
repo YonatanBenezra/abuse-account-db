@@ -1,3 +1,4 @@
+const AbuseProfile = require('../models/abuseProfileModel');
 const APIFeatures = require('../utils/apiFeatures');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
@@ -44,6 +45,8 @@ exports.createOne = (Model) =>
       },
     });
   });
+
+
 
 // Get a document by ID with optional population of fields
 exports.getOne = (Model, popOptions) =>
