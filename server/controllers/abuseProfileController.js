@@ -4,7 +4,7 @@ const handlerFactory = require('./handlerFactory');
 const catchAsync = require('../utils/catchAsync');
 
 exports.createOrUpdateProfile = catchAsync(async (req, res, next) => {
-  const { profileLink, categories, comment, uploadedBy } = req.body;
+  const { profileLink, categories, comment, uploadedBy, linkToPost } = req.body;
 
   // Find the abuse profile or create a new one if it doesn't exist
 
@@ -20,6 +20,7 @@ exports.createOrUpdateProfile = catchAsync(async (req, res, next) => {
     categories: categories,
     comment: comment,
     uploadedBy: uploadedBy,
+    linkToPost: linkToPost,
     abuseProfile: abuseProfile._id,
   });
   res.send({ abuseProfile: abuseProfile, report: report });
