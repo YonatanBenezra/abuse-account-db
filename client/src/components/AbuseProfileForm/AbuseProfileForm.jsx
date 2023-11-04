@@ -276,6 +276,16 @@ export default function AbuseProfileForm() {
                 onChange={onChange}
               />
             </span>
+            <span className="checkbox-item">
+              <label htmlFor="PyramidScheme">Pyramid Scheme</label>
+              <input
+                className="form-checkbox"
+                name="PyramidScheme"
+                id="PyramidScheme"
+                type="checkbox"
+                onChange={onChange}
+              />
+            </span>
           </div>
         </div>
         <div className="form-section">
@@ -283,6 +293,17 @@ export default function AbuseProfileForm() {
           <textarea
             className="form-textarea"
             {...register("comment", { maxLength: 1200 })}
+          />
+        </div>
+        <div className="form-section">
+          <h3>Abusive post URL</h3>
+          <input
+            className="form-input"
+            {...register("linkToPost", {
+              required: true,
+              pattern:
+                /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/,
+            })}
           />
         </div>
         <input className="form-submit" type="submit" />
