@@ -24,6 +24,7 @@ export default function AbuseProfileForm() {
       .then(() => {
         checkDbLength();
         reset();
+        setCategories([]);
       });
   };
   const onChange = (event) => {
