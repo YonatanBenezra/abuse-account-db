@@ -3,7 +3,7 @@ import AbuseProfileForm from "./components/AbuseProfileForm/AbuseProfileForm";
 import FoundResults from "./components/FoundResults/FoundResults";
 import Home from "./components/Home/Home";
 import ProfileCard from "./components/ProfileCard/ProfileCard";
-import Navbar from "./components/navBar/NavBar";
+import Navbar from "./components/navBar/Navbar";
 
 function App() {
   return (
