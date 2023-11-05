@@ -245,11 +245,11 @@ export default function AbuseProfileForm() {
               />
             </span>
             <span className="checkbox-item">
-              <label htmlFor="FakeNews">Fake News</label>
+              <label htmlFor="FakeProfile">Fake Profile</label>
               <input
                 className="form-checkbox"
-                name="FakeNews"
-                id="FakeNews"
+                name="FakeProfile"
+                id="FakeProfile"
                 type="checkbox"
                 onChange={onChange}
               />
