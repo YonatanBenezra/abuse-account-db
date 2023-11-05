@@ -9,6 +9,9 @@ router
   .get(abuseProfileController.getAllAbuseProfiles)
   .post(abuseProfileController.createOrUpdateProfile);
 
+// Route for getting recent abuseProfiles
+router.route('/:limit').get(abuseProfileController.getRecentAbuseProfile);
+
 // Routes for getting, updating, and deleting a specific AbuseProfile
 router
   .route('/:id')

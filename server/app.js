@@ -11,6 +11,7 @@ const cors = require('cors'); // Middleware for enabling Cross-Origin Resource S
 const AppError = require('./utils/appError'); // Custom error handling utility
 const globalErrorHandler = require('./controllers/errorController'); // Global error handling controller
 const abuseProfileRoutes = require('./routes/abuseProfile'); // Routes for abuseProfiles
+const reportRoutes = require('./routes/report'); // Routes for reports
 const userRoutes = require('./routes/user'); // Routes for user-related operations
 
 // Create an Express application
@@ -73,6 +74,7 @@ app.get('/', async (req, res, next) => {
 
 // API routes
 app.use('/api/abuseprofiles', abuseProfileRoutes);
+app.use('/api/reports', reportRoutes);
 app.use('/api/users', userRoutes);
 
 // If no routes are matched, send a 404 error

@@ -6,17 +6,24 @@ class APIFeatures {
   }
 
   filter() {
-    //Shallow copy of the object
     const queryObj = { ...this.queryString };
-    //Filtering
     const excludedFields = ['page', 'sort', 'limit', 'fields'];
-    excludedFields.forEach((el) => delete queryObj[el]);
+    excludedFields.forEach(el => delete queryObj[el]);
 
-    //Advanced filtering
     let queryStr = JSON.stringify(queryObj);
-    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
 
-    this.query = this.query.find(JSON.parse(queryStr));
+    // Convert "profileLink" with a string pattern into a regex query
+    const parsedQuery = JSON.parse(queryStr);
+    if (parsedQuery.profileLink) {
+      // If "profileLink" is meant to be a regex, it would come in the form of "regex:pattern"
+      const regexPattern = parsedQuery.profileLink.match(/regex:(.*)/);
+      if (regexPattern) {
+        parsedQuery.profileLink = { $regex: regexPattern[1], $options: 'i' }; // 'i' for case-insensitive
+      }
+    }
+
+    this.query = this.query.find(parsedQuery);
     return this;
   }
 

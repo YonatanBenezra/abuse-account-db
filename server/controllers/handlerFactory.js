@@ -46,8 +46,6 @@ exports.createOne = (Model) =>
     });
   });
 
-
-
 // Get a document by ID with optional population of fields
 exports.getOne = (Model, popOptions) =>
   catchAsync(async (req, res, next) => {
@@ -87,3 +85,22 @@ exports.getAll = (Model, popOptions) =>
       },
     });
   });
+
+exports.getRecent = (Model) =>
+  catchAsync(async (req, res) => {
+    const recentData = await Model.find()
+      .sort({ createdAt: -1 }) // Sort by creation date, most recent first
+      .limit(req.params.limit) // Limit to 12 results
+      .exec(); // Execute the query
+
+    // Return the results
+    res.status(200).json({
+      status: 'success',
+      results: recentData.length,
+      data: {
+        data: recentData,
+      },
+    });
+  });
+
+exports.findAll;

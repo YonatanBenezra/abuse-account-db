@@ -28,5 +28,6 @@ exports.createOrUpdateProfile = catchAsync(async (req, res, next) => {
 
 exports.updateAbuseProfile = handlerFactory.updateOne(AbuseProfile);
 exports.getAllAbuseProfiles = handlerFactory.getAll(AbuseProfile);
+exports.getRecentAbuseProfile = handlerFactory.getRecent(AbuseProfile);
 exports.getAbuseProfile = handlerFactory.getOne(AbuseProfile);
 exports.deleteAbuseProfile = handlerFactory.deleteOne(AbuseProfile);
