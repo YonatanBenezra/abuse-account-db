@@ -10,17 +10,17 @@ function Navbar() {
       </div>
       <ul className="navbar__links">
         <li>
-          <NavLink to="/" activeClassName="navbar__link--active" exact>
+          <NavLink to="/" activeclassname="navbar__link--active" exact="true">
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink to="/report" activeClassName="navbar__link--active">
+          <NavLink to="/report" activeclassname="navbar__link--active">
             Report
           </NavLink>
         </li>
         <li>
-          <NavLink to="/about" activeClassName="navbar__link--active">
+          <NavLink to="/about" activeclassname="navbar__link--active">
             About
           </NavLink>
         </li>

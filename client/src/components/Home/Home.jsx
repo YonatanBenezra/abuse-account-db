@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./home.scss";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -49,15 +49,15 @@ function Home() {
       </div>
 
       <div className="explanation-container">
-        <p>
+        <div>
           Search and report abusive profiles easily.
           <p>Help us maintain a respectful community.</p>
           <h1>
-            <NavLink to="/report" activeClassName="navbar__link--active">
+            <NavLink to="/report" activeclassname="navbar__link--active">
               Report an abusive account
             </NavLink>
           </h1>
-        </p>
+        </div>
       </div>
 
       <div className="recent-reports">
