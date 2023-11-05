@@ -10,13 +10,9 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get(
-        `${
-          import.meta.env.VITE_API_URL
-        }/api/abuseprofiles/12`
-      )
+      .get(`${import.meta.env.VITE_API_URL}/api/abuseprofiles/12`)
       .then((response) => {
-        setRecentReportProfiles(response.data.data.data)
+        setRecentReportProfiles(response.data.data.data);
       });
   }, []);
   const handleSearchChange = (event) => {
@@ -56,6 +52,11 @@ function Home() {
         <p>
           Search and report abusive profiles easily.
           <p>Help us maintain a respectful community.</p>
+          <h1>
+            <NavLink to="/report" activeClassName="navbar__link--active">
+              Report an abusive account
+            </NavLink>
+          </h1>
         </p>
       </div>
 
