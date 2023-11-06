@@ -8,7 +8,7 @@ function FoundResults() {
   const [abuseProfiles, setAbuseProfiles] = useState([]);
   const [reports, setReports] = useState([]);
   let location = useLocation();
-
+  console.log(location.state);
   useEffect(() => {
     setAbuseProfiles(location.state.data);
   }, []);
@@ -48,7 +48,7 @@ function FoundResults() {
       });
   };
   return (
-    <div className="home">
+    <div className="found-results">
       <div className="search-bar">
         <form onSubmit={handleSearchSubmit}>
           <input
@@ -68,29 +68,36 @@ function FoundResults() {
         <p>We found {abuseProfiles.length} relevant profiles</p>
       </div>
 
-      <div className="recent-reports">
+      <div className="profile-cards">
         <h2>Relevant Profiles</h2>
-        <ul>
-          {abuseProfiles.map((abuseProfile, index) => {
-            return reports.map((report) => {
-              return (
-                <div>
-                  <NavLink
-                    to="/profilecard"
-                    state={{
-                      profileLink: abuseProfile.profileLink,
-                      reports: report.data.data.data,
-                    }}
-                  >
-                    {console.log(abuseProfile)}
-                    <li key={index}>{abuseProfile.profileLink}</li>
-                  </NavLink>
-                  number of reports: {report.data.data.data.length}
+        <div className="card-container">
+          {abuseProfiles.map((abuseProfile, index) => (
+            <div className="card" key={index}>
+              <NavLink
+                to="/profilecard"
+                state={{
+                  profileLink: abuseProfile.profileLink,
+                  reports: reports[index]?.data?.data?.data || [],
+                }}
+                className="card-link"
+              >
+                {/* <div
+                  className="profile-image"
+                  style={{ backgroundImage: `url(${defaultProfileImg})` }}
+                ></div> */}
+                <div className="profile-details">
+                  <span className="profile-link">
+                    {abuseProfile.profileLink}
+                  </span>
+                  <span className="report-count">
+                    Number of reports:{" "}
+                    {reports[index]?.data?.data?.data.length || 0}
+                  </span>
                 </div>
-              );
-            });
-          })}
-        </ul>
+              </NavLink>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -15,6 +15,7 @@ function Home() {
         setRecentReportProfiles(response.data.data.data);
       });
   }, []);
+
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -23,14 +24,13 @@ function Home() {
     event.preventDefault();
     axios
       .get(
-        `${
-          import.meta.env.VITE_API_URL
-        }/api/abuseprofiles?profileLink=regex:${searchTerm}`
+        `${import.meta.env.VITE_API_URL}/api/abuseprofiles?profileLink=regex:${searchTerm}`
       )
       .then((response) => {
         navigate("/foundresults", { state: { data: response.data.data.data } });
       });
   };
+
   return (
     <div className="home">
       <div className="search-bar">
@@ -52,23 +52,26 @@ function Home() {
         <div>
           Search and report abusive profiles easily.
           <p>Help us maintain a respectful community.</p>
-          <h1>
-            <NavLink to="/report" activeclassname="navbar__link--active">
-              Report an abusive account
-            </NavLink>
-          </h1>
+          <NavLink to="/report" className="report-button">
+            Report an abusive account
+          </NavLink>
         </div>
       </div>
 
       <div className="recent-reports">
-        <h2>Recent Reports</h2>
+        <h2>Recent Reported accounts</h2>
         <ul>
           {recentReportProfiles.map((abuseProfile, index) => (
-            <li key={index}>
-              {abuseProfile.profileLink}
-              <br />
-              {abuseProfile.updatedAt}
-            </li>
+            <NavLink to="/foundresults" state={{ data: [abuseProfile] }} key={index}>
+              <li>
+                {/* <div className="profile-image" style={{ backgroundImage: `url(${abuseProfile.imageUrl || 'default-profile.png'})` }} /> */}
+                <div className="profile-text">
+                  {abuseProfile.profileLink}
+                  <br />
+                  {new Date(abuseProfile.updatedAt).toLocaleDateString()}
+                </div>
+              </li>
+            </NavLink>
           ))}
         </ul>
       </div>

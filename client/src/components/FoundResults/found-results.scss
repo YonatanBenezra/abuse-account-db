@@ -1,50 +1,67 @@
-.home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
+.found-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
   .search-bar {
-    margin-bottom: 20px;
-    .search-input {
-      padding: 10px;
-      margin-right: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .search-button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      &:hover {
-        background-color: #0056b3;
-      }
-    }
+    // ... existing styles ...
   }
-  
   .explanation-container {
-    margin-bottom: 20px;
-    p {
-      text-align: center;
-    }
+    // ... existing styles ...
   }
-  
-  .recent-reports {
+  .profile-cards {
     width: 100%;
     h2 {
       text-align: center;
     }
-    ul {
-      list-style: none;
-      padding: 0;
-      li {
-        padding: 10px;
-        border-bottom: 1px solid #ccc;
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .card {
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s;
+      &:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      }
+      .card-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: inherit;
+      }
+      .profile-image {
+        width: 100%;
+        height: 120px;
+        background-size: cover;
+        background-position: center;
+      }
+      .profile-details {
+        padding: 15px;
+        text-align: center;
+        .profile-link {
+          font-weight: bold;
+          display: block;
+          margin-bottom: 8px;
+        }
+        .report-count {
+          font-size: 0.9em;
+          color: #666;
+        }
       }
     }
   }
-  
+}
+
+@media (max-width: 767px) {
+  .found-results .profile-cards .card-container {
+    grid-template-columns: 1fr;
+  }
+}
