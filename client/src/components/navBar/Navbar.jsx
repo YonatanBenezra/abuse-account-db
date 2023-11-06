@@ -1,6 +1,6 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import './navbar.scss';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import "./navbar.scss";
 
 function Navbar() {
   return (
@@ -19,11 +19,25 @@ function Navbar() {
             Report
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/about" activeclassname="navbar__link--active">
-            About
-          </NavLink>
-        </li>
+        {localStorage.getItem("token") ? (
+          <li
+            onClick={() => {
+              localStorage.removeItem("token");
+              localStorage.removeItem("loggedUser");
+              location.reload();
+            }}
+          >
+            <NavLink to="/" activeclassname="navbar__link--active">
+              logout
+            </NavLink>
+          </li>
+        ) : (
+          <li>
+            <NavLink to="/login" activeclassname="navbar__link--active">
+              Login
+            </NavLink>
+          </li>
+        )}
       </ul>
     </nav>
   );

@@ -4,6 +4,8 @@ import FoundResults from "./components/FoundResults/FoundResults";
 import Home from "./components/Home/Home";
 import ProfileCard from "./components/ProfileCard/ProfileCard";
 import Navbar from "./components/navBar/Navbar";
+import Signup from "./components/Auth/SignUp";
+import Login from "./components/Auth/Login";
 
 function App() {
   return (
@@ -14,6 +16,9 @@ function App() {
         <Route path="/report" element={<AbuseProfileForm />}></Route>
         <Route path="/foundresults" element={<FoundResults />}></Route>
         <Route path="/profilecard" element={<ProfileCard />}></Route>
+        <Route path="/signup" element={<Signup />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+
       </Routes>
     </>
   );

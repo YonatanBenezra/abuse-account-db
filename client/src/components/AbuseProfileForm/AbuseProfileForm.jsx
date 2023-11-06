@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import "./abuse-profile-form.scss";
+import { useNavigate } from "react-router-dom";
 export default function AbuseProfileForm() {
+    const navigate = useNavigate();
+
   const [categories, setCategories] = useState([]);
   const [dbLength, setDbLength] = useState(0);
   const { register, handleSubmit, reset } = useForm();
@@ -14,11 +17,13 @@ export default function AbuseProfileForm() {
   };
 
   useEffect(() => {
+    localStorage.getItem("token") ? "" : navigate("/login")
     checkDbLength();
   }, []);
 
   const onSubmit = (data) => {
     data.categories = categories;
+    data.uploadedBy = localStorage.getItem("loggedUser")
     axios
       .post(`${import.meta.env.VITE_API_URL}/api/abuseprofiles/`, data)
       .then(() => {
