@@ -81,11 +81,10 @@ function FoundResults() {
                 }}
                 className="card-link"
               >
-                {/* <div
-                  className="profile-image"
-                  style={{ backgroundImage: `url(${defaultProfileImg})` }}
-                ></div> */}
                 <div className="profile-details">
+                {/* <div
+                  className="social-image"
+                ></div> */}
                   <span className="profile-link">
                     {abuseProfile.profileLink}
                   </span>

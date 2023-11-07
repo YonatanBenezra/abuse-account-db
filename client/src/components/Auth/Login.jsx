@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
+import "./auth-forms.scss";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -31,34 +32,33 @@ const Login = () => {
       }
     }
   };
+
   return (
-    <div>
+    <div className="auth-form">
       <h2>Login</h2>
-      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
       <form onSubmit={handleLogin}>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
+        <input
+          type="email"
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="email"
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="password"
+          required
+        />
         <button type="submit">Login</button>
       </form>
-      <NavLink to="/signup">Do not have an account? Signup now</NavLink>
+      <NavLink to="/signup" className="nav-link">
+        Don't have an account? Signup now
+      </NavLink>
     </div>
   );
 };

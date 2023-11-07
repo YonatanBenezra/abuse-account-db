@@ -37,11 +37,12 @@
         text-decoration: none;
         color: inherit;
       }
-      .profile-image {
+      .social-image {
         width: 100%;
         height: 120px;
         background-size: cover;
         background-position: center;
+        background-image: url('../../assets/facebook.svg');
       }
       .profile-details {
         padding: 15px;

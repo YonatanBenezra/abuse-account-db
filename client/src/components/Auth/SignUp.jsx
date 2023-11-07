@@ -36,7 +36,8 @@ const Signup = () => {
   };
 
   return (
-    <div>
+    <div className="auth-form">
+      <h2>Signup</h2>
       <form onSubmit={(e) => onSubmit(e)}>
         <input
           type="text"
