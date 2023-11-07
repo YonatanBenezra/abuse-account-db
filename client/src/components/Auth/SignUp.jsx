@@ -25,9 +25,11 @@ const Signup = () => {
         `${import.meta.env.VITE_API_URL}/api/users/signup`,
         formData
       );
-      localStorage.setItem("token", response.token);
-      alert("Login Successful");
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("loggedUser", response.data.data.user._id);
+      alert("Sign up Successful");
       navigate("/");
+      location.reload();
     } catch (err) {
       console.error(err.response.data);
     }
