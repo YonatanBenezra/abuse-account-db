@@ -21,7 +21,7 @@ const Signup = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
+      const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/users/signup`,
         formData
       );
