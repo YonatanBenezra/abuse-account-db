@@ -8,7 +8,6 @@ function FoundResults() {
   const [abuseProfiles, setAbuseProfiles] = useState([]);
   const [reports, setReports] = useState([]);
   let location = useLocation();
-  console.log(location.state);
   useEffect(() => {
     setAbuseProfiles(location.state.data);
   }, []);
@@ -19,7 +18,6 @@ function FoundResults() {
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
-  console.log(reports);
   const setReportsFunction = () => {
     abuseProfiles.map((profile) => {
       axios

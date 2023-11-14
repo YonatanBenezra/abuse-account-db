@@ -7,6 +7,7 @@ import Card from "./Cards";
 function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [recentReportProfiles, setRecentReportProfiles] = useState([]);
+  const [numberPressed, setNumberPressed] = useState(1);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,7 +17,15 @@ function Home() {
         setRecentReportProfiles(response.data.data.data);
       });
   }, []);
-
+  const getNumOfReports = (abuseProfileId) => {
+    axios
+      .get(
+        `${
+          import.meta.env.VITE_API_URL
+        }/api/abuseprofiles/reportsnum/${abuseProfileId}`
+      )
+      .then((response) => {});
+  };
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -37,14 +46,37 @@ function Home() {
   return (
     <div className="home border-r-2 border-l-2 min-h-screen mx-20 border-white/10">
       <div className="w-full number-buttons-container">
-        <span>
-          <span>1</span>
-          <span>2</span>
-          <span>3</span>
+        <span className="number-buttons">
+          <a
+            href="#hero"
+            className={`border-2 rounded-full p-1 number-button cursor-pointer ${
+              numberPressed !== 1 && "text-white/20 border-white/20"
+            }`}
+            onClick={() => setNumberPressed(1)}
+          >
+            1
+          </a>
+          <a
+            href="#reported-accounts"
+            className={`border-2 rounded-full p-1 number-button cursor-pointer ${
+              numberPressed !== 2 && "text-white/20 border-white/20"
+            }`}
+            onClick={() => setNumberPressed(2)}
+          >
+            2
+          </a>
+          <a
+            className={`border-2 rounded-full p-1 number-button cursor-pointer ${
+              numberPressed !== 3 && "text-white/20 border-white/20"
+            }`}
+            onClick={() => setNumberPressed(3)}
+          >
+            3
+          </a>
         </span>
-        <div className="section-1 h-screen w-full">
-          <h1 className="title">Report an abusive content</h1>
-          <h5 className="sub-title">
+        <div className="section-1 h-screen w-full" id="hero">
+          <h1 className="title mb-6">REPORT AN ABUSIVE ACCOUNT</h1>
+          <h5 className="sub-title text-white/50 mb-6">
             Find and report an abusive profile in any social media. Also there
             could some more text in a couple more lines.
           </h5>
@@ -65,8 +97,11 @@ function Home() {
         </div>
       </div>
 
-      <div className="section-2 recent-reports h-screen">
-        <h2>Recent Reported accounts</h2>
+      <div className="section-2 recent-reports h-screen" id="reported-accounts">
+        <h1 className="title mb-6">RECENTLY REPORTED</h1>
+        <h5 className="sub-title text-white/50 mb-6">
+          The list of recently reported accounts.
+        </h5>{" "}
         <ul>
           {recentReportProfiles.map((abuseProfile, index) => (
             <NavLink
@@ -75,7 +110,12 @@ function Home() {
               key={index}
             >
               <li>
-                {/* <div className="profile-image" style={{ backgroundImage: `url(${abuseProfile.imageUrl || 'default-profile.png'})` }} /> */}
+                <div
+                  className={`profile-image ${
+                    abuseProfile.profileLink.includes("facebook") &&
+                    "facebook-logo"
+                  }`}
+                />
                 <div className="profile-text">
                   {abuseProfile.profileLink}
                   <br />
