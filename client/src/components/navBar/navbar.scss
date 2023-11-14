@@ -1,49 +1,109 @@
-.navbar {
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 0.5rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  
-    &__logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #333;
-  
-      a {
-        text-decoration: none;
-        color: inherit;
-  
-        &:hover {
-          text-decoration: none;
-          color: inherit;
-        }
-      }
-    }
-  
-    &__links {
-      list-style: none;
-      display: flex;
-      margin: 0;
-      padding: 0;
-  
-      li {
-        margin-left: 1rem;
-  
-        a {
-          text-decoration: none;
-          color: #666;
-          font-size: 1rem;
-          padding: 0.5rem 0;
-  
-          &:hover,
-          &.navbar__link--active {
-            color: #333;
-            border-bottom: 2px solid #333;
-          }
-        }
-      }
-    }
+// @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&family=Rubik:wght@300&display=swap");
+
+// .navbar {
+//   background-color: #14151b;
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+//   padding: 0.5rem 2rem;
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   color: #FFFEFE;
+
+//   &__logo {
+//     font-size: 1.8rem;
+//     font-weight: bold;
+//     color: #333;
+//     font-family: "IBM Plex Mono", monospace;
+//     a {
+//       text-decoration: none;
+//       color: inherit;
+
+//       &:hover {
+//         text-decoration: none;
+//         color: inherit;
+//       }
+//     }
+//   }
+//   .end-nav-links {
+//     color: #21212180;
+//   }
+//   &__links {
+//     justify-content: space-between;
+//     align-items: center;
+//     list-style: none;
+//     display: flex;
+//     margin: 0;
+//     padding: 0;
+//     width: 100%;
+//     div {
+//       display: flex;
+//     }
+
+//     li {
+//       margin-left: 1rem;
+
+//       a {
+//         text-decoration: none;
+//         color: #979697;
+//         font-size: 1rem;
+//         padding: 0.5rem 0;
+
+//         &:hover,
+//         &.navbar__link--active {
+//           color: #FFFEFE;
+//           border-bottom: 2px solid #333;
+//         }
+//       }
+//     }
+//   }
+// }
+.nav-effect {
+  position: relative;
+}
+.nav-effect::after {
+  content: "";
+  background-color: #eeb30d;
+  height: 2px;
+  width: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: 0.5s;
+}
+.nav-effect:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .cleancode-menu-animation {
+    animation: menuAnimation 0.5s ease-out;
   }
-  
+}
+
+.cleancode-dropdown-animation {
+  animation: dropdownAnimation 0.5s ease-out;
+}
+
+@keyframes menuAnimation {
+  from {
+    margin-top: -50px;
+  }
+  to {
+    margin-top: 16px;
+  }
+}
+
+@keyframes dropdownAnimation {
+  from {
+    margin-right: -50px;
+  }
+  to {
+    margin-right: 0px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .logo {
+    width: 2rem !important;
+  }
+}

@@ -88,6 +88,11 @@ function FoundResults() {
                   <span className="profile-link">
                     {abuseProfile.profileLink}
                   </span>
+
+
+
+
+                  
                   <span className="report-count">
                     Number of reports:{" "}
                     {reports[index]?.data?.data?.data.length || 0}
