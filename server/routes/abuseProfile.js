@@ -13,6 +13,10 @@ router
 router.route('/update').get(abuseProfileController.updateProfileLinks);
 router.route('/:limit').get(abuseProfileController.getRecentAbuseProfile);
 
+  // Route for counting the number of reports where the 'abuseProfile' field matches the provided ID
+
+router.route('/reportsnum/:id').get(abuseProfileController.getNumberOfReports);
+
 // Routes for getting, updating, and deleting a specific AbuseProfile
 router
   .route('/:id')

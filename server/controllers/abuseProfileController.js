@@ -67,6 +67,16 @@ function normalizeProfileLink(profileLink) {
   return normalizedLink;
 }
 
+exports.getNumberOfReports = catchAsync(async (req, res, next) => {
+  try {
+    const count = await Report.countDocuments({ abuseProfile: req.params.id });
+    res.send(count.toString());
+  } catch (error) {
+    console.error('Error getting number of reports:', error);
+    throw error;
+  }
+});
+
 exports.updateProfileLinks = catchAsync(async (req, res, next) => {
   // Fetch all abuseProfiles
   const abuseProfiles = await AbuseProfile.find({});
