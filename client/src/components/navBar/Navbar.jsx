@@ -132,7 +132,7 @@ const Navbar = () => {
         <link rel="icon" href={Logo} />
       </Helmet>
 
-      <div className="relative w-full mx-auto bg-inherit py-3 px-3 lg:flex justify-around items-center h-auto border-b-2 border-white/10">
+      <div className="relative w-full mx-auto bg-inherit py-3 px-3 lg:flex justify-around items-center h-auto border-b-2 border-white/10 font-lato">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-black text-xl font-semibold">
             <div className="flex items-center gap-1">
@@ -213,7 +213,8 @@ const Navbar = () => {
             id="mobile-menu"
           >
             <ul className="flex flex-col gap-3 md:gap-8 md:mt-[1.5px] lg:text-left lg:flex-row lg:items-center">
-              {[
+              {
+              [
                 { to: "/login", label: "Log in" },
                 { to: "/signup", label: "Sign up" },
               ].map((link) => (

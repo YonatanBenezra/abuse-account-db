@@ -9,23 +9,45 @@ function Home() {
   const [recentReportProfiles, setRecentReportProfiles] = useState([]);
   const [numberPressed, setNumberPressed] = useState(1);
   const navigate = useNavigate();
+  const [numOfReports, setNumOfReports] = useState({});
+
+  const getNumOfReports = async (abuseProfileId) => {
+    const res = await axios.get(
+      `${
+        import.meta.env.VITE_API_URL
+      }/api/abuseprofiles/reportsnum/${abuseProfileId}`
+    );
+    return res.data;
+  };
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/api/abuseprofiles/12`)
-      .then((response) => {
-        setRecentReportProfiles(response.data.data.data);
-      });
+    if (recentReportProfiles.length === 0) {
+      axios
+        .get(`${import.meta.env.VITE_API_URL}/api/abuseprofiles/12`)
+        .then((response) => {
+          setRecentReportProfiles(response.data.data.data);
+        });
+    }
   }, []);
-  const getNumOfReports = (abuseProfileId) => {
-    axios
-      .get(
-        `${
-          import.meta.env.VITE_API_URL
-        }/api/abuseprofiles/reportsnum/${abuseProfileId}`
-      )
-      .then((response) => {});
-  };
+
+  useEffect(() => {
+    if (recentReportProfiles.length > 0) {
+    recentReportProfiles.forEach(abuseProfile => {
+      if (!numOfReports[abuseProfile._id]) {
+        const fetchNumOfReports = async () => {
+          const data = await getNumOfReports(abuseProfile._id);
+          setNumOfReports(prevState => ({
+            ...prevState,
+            [abuseProfile._id]: data
+          }));
+        };
+        fetchNumOfReports();
+      }
+    });
+    }
+   }, [recentReportProfiles, getNumOfReports, numOfReports]);
+   
+
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -44,7 +66,7 @@ function Home() {
   };
 
   return (
-    <div className="home border-r-2 border-l-2 min-h-screen mx-20 border-white/10">
+    <div className="home border-r-2 border-l-2 min-h-screen border-white/10 md:mx-10 mx-5">
       <div className="w-full number-buttons-container">
         <span className="number-buttons">
           <a
@@ -117,7 +139,9 @@ function Home() {
                   }`}
                 />
                 <div className="profile-text">
-                  {abuseProfile.profileLink}
+                  {numOfReports[abuseProfile._id]} Reports on profile
+                  <br />
+                  {abuseProfile.profileLink.replace("facebook.com/", "")}
                   <br />
                   {new Date(abuseProfile.updatedAt).toLocaleDateString()}
                 </div>

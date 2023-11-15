@@ -4,9 +4,11 @@
   align-items: center;
   overflow-x: hidden;
   overflow: hidden;
-
+  // @media screen and (max-width: 768px) {
+  //   width: 89%;
+  // }
   .facebook-logo {
-    background-image: url('../../assets/facebook.svg');
+    background-image: url("../../assets/facebook.svg");
   }
   .number-button {
     width: 30px;
@@ -35,17 +37,23 @@
     justify-content: center;
     align-items: center;
     margin-top: -43px;
+    @media screen and (max-width: 768px) {
+      padding-left: 15%;
+      padding-right: 15%;
+    }
   }
   .section-2 {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
   }
   .title {
     font-family: Staatliches;
-    font-size: 64px;
+    font-size: 5vw;
     font-weight: 400;
-    line-height: 80px;
+    line-height: 8vw;
     letter-spacing: 0.02em;
     text-align: center;
   }
@@ -170,7 +178,7 @@
     padding: 0;
     margin-top: 20px;
     grid-template-columns: repeat(auto-fill, minmax(48%, 1fr));
-
+    width: 100%;
     li {
       display: flex;
       align-items: center;
@@ -205,12 +213,6 @@
 @media only screen and (max-width: 768px) {
   .recent-reports ul {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  .recent-reports ul {
-    grid-template-columns: 1fr;
   }
 }
 

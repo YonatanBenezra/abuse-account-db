@@ -39,7 +39,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // Limit requests from the same API using express-rate-limit
 const limiter = rateLimit({
-  max: 999,
+  max: 9999,
   windowMs: 60 * 60 * 1000, // 1 hour window
   message: 'Too many requests from this IP, please try again in an hour!',
 });
