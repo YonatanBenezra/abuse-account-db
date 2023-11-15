@@ -3,7 +3,7 @@ import "./home.scss";
 import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
 import Card from "./Cards";
-
+import { Link, animateScroll as scroll } from "react-scroll";
 function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [recentReportProfiles, setRecentReportProfiles] = useState([]);
@@ -32,21 +32,20 @@ function Home() {
 
   useEffect(() => {
     if (recentReportProfiles.length > 0) {
-    recentReportProfiles.forEach(abuseProfile => {
-      if (!numOfReports[abuseProfile._id]) {
-        const fetchNumOfReports = async () => {
-          const data = await getNumOfReports(abuseProfile._id);
-          setNumOfReports(prevState => ({
-            ...prevState,
-            [abuseProfile._id]: data
-          }));
-        };
-        fetchNumOfReports();
-      }
-    });
+      recentReportProfiles.forEach((abuseProfile) => {
+        if (!numOfReports[abuseProfile._id]) {
+          const fetchNumOfReports = async () => {
+            const data = await getNumOfReports(abuseProfile._id);
+            setNumOfReports((prevState) => ({
+              ...prevState,
+              [abuseProfile._id]: data,
+            }));
+          };
+          fetchNumOfReports();
+        }
+      });
     }
-   }, [recentReportProfiles, getNumOfReports, numOfReports]);
-   
+  }, [recentReportProfiles, getNumOfReports, numOfReports]);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -69,35 +68,51 @@ function Home() {
     <div className="home border-r-2 border-l-2 min-h-screen border-white/10 md:mx-10 mx-5">
       <div className="w-full number-buttons-container">
         <span className="number-buttons">
-          <a
-            href="#hero"
+          <Link
+            activeClass="active"
+            to="hero"
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={500}
             className={`border-2 rounded-full p-1 number-button cursor-pointer ${
               numberPressed !== 1 && "text-white/20 border-white/20"
             }`}
             onClick={() => setNumberPressed(1)}
           >
             1
-          </a>
-          <a
-            href="#reported-accounts"
+          </Link>
+          <Link
+            activeClass="active"
+            to="reported-accounts"
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={500}
             className={`border-2 rounded-full p-1 number-button cursor-pointer ${
               numberPressed !== 2 && "text-white/20 border-white/20"
             }`}
             onClick={() => setNumberPressed(2)}
           >
             2
-          </a>
-          <a
+          </Link>
+          <Link
+            activeClass="active"
+            to="hero"
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={500}
             className={`border-2 rounded-full p-1 number-button cursor-pointer ${
               numberPressed !== 3 && "text-white/20 border-white/20"
             }`}
             onClick={() => setNumberPressed(3)}
           >
             3
-          </a>
+          </Link>
         </span>
         <div className="section-1 h-screen w-full" id="hero">
-          <h1 className="title mb-6">REPORT AN ABUSIVE ACCOUNT</h1>
+          <h1 className="title">REPORT AN ABUSIVE ACCOUNT</h1>
           <h5 className="sub-title text-white/50 mb-6">
             Find and report an abusive profile in any social media. Also there
             could some more text in a couple more lines.

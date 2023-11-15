@@ -212,7 +212,7 @@ const Navbar = () => {
             } lg:flex lg:w-auto mt-4 lg:mt-0 cleancode-menu-animation  transition-all duration-300 `}
             id="mobile-menu"
           >
-            <ul className="flex flex-col gap-3 md:gap-8 md:mt-[1.5px] lg:text-left lg:flex-row lg:items-center">
+            <ul className="flex flex-col gap-3 md:gap-3 md:mt-[1.5px] lg:text-left lg:flex-row lg:items-center">
               {
               [
                 { to: "/login", label: "Log in" },
