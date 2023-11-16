@@ -2,15 +2,30 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  /* background-color: #f7f7f7; */
-  border-radius: 8px;
+  background-color: rgba(33, 33, 33, 1);
+  border-radius: 18px;
   margin-top: 15px;
-  border: 2px;
-  box-shadow: 0px 2px 5px 1px #ffff;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  hr {
+    border-top-color: rgba(255, 255, 255, 0.08);
+  }
+  .cancel-button {
+    padding: 10px 24px 10px 24px;
+    border-radius: 12px;
+    border: 2px;
+    gap: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.08);
+    margin-left: 1rem;
+  }
 }
 
 .form-title {
-  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  text-align: left;
 }
 
 .form-section {
@@ -20,56 +35,90 @@
 .form-input,
 .form-textarea {
   width: 97%;
-  padding: 10px;
   margin-top: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  color: black;
+  padding: 10px 16px 10px 16px;
+  margin-right: 10px;
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.16),
+    rgba(255, 255, 255, 0.16)
+  );
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+  }
 }
 
 .form-textarea {
-  resize: vertical;
+  resize: none;
+  height: 135px;
 }
-
+.form-header {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0.02em;
+  text-align: left;
+  margin-top: 1rem;
+}
 .checkbox-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
 }
-
+.active-checkbox {
+  background: rgba(255, 255, 255, 1);
+  color: black;
+}
 .checkbox-item {
   display: flex;
   align-items: center;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .form-checkbox {
   margin-right: 5px;
   cursor: pointer;
+  display: none;
 }
 
 label {
   cursor: pointer;
-}
-
-.form-submit {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  margin-top: 20px;
-  border-radius: 4px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: darken($color: #007bff, $amount: 10);
+  border-radius: 123px;
+  padding: 8px 16px 8px 16px;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.08);
+  min-width: max-content;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  &:focus {
+    outline: none !important;
   }
 }
 
+.form-submit {
+  padding: 10px 24px 10px 24px;
+  border-radius: 12px;
+  gap: 8px;
+  background: rgba(255, 255, 255, 1) !important;
+  color: rgba(33, 33, 33, 1);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0.02em;
+  text-align: left;
+  cursor: pointer;
+}
+
 .accounts-counter {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

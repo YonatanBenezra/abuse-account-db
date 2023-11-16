@@ -111,7 +111,7 @@
   .search-input {
     padding: 16px 6px 16px 24px;
     margin-right: 10px;
-    border: 1px solid #ccc;
+    border: 2px solid rgba(255, 255, 255, 0.08);
     width: 50vw;
     background: linear-gradient(
       0deg,
@@ -127,13 +127,12 @@
       rgba(255, 255, 255, 0.16),
       rgba(255, 255, 255, 0.16)
     );
-    border: 2px solid rgba(255, 255, 255, 0.0784313725);
+    border: 2px solid rgba(255, 255, 255, 0.08);
     padding: 10px 24px 10px 24px;
     border-radius: 12px;
     margin-left: -115px;
-    &:hover {
-      background-color: #0056b3;
-    }
+    color: rgba(255, 255, 255, 0.16);
+    background-color: rgba(255, 255, 255, 0.001);
   }
 }
 

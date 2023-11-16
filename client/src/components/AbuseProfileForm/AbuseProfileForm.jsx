@@ -22,7 +22,6 @@ export default function AbuseProfileForm() {
   }, []);
 
   const onSubmit = (data) => {
-    console.log(categories.length)
     if (categories.length > 0) {
       data.categories = categories;
       data.uploadedBy = localStorage.getItem("loggedUser");
@@ -32,12 +31,11 @@ export default function AbuseProfileForm() {
           checkDbLength();
           reset();
           setCategories([]);
-          alert("report created successfully")
+          alert("report created successfully");
         });
-    }else {
-      alert("please contain at least 1 category")
+    } else {
+      alert("please contain at least 1 category");
     }
-
   };
   const onChange = (event) => {
     categories.includes(event.target.id)
@@ -46,16 +44,17 @@ export default function AbuseProfileForm() {
   };
   return (
     <div className="form-container">
-      <div className="accounts-counter">
+      {/* <div className="accounts-counter">
         <h1>Accounts reported</h1>
         <h2>{dbLength}</h2>
-      </div>
+      </div> */}
       <h1 className="form-title">Report Account</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-section">
-          <h3>Account URL</h3>
+          <h3 className="text-semi-white form-header">Abusive account URL<span className="text-red-700">*</span></h3>
           <input
             className="form-input"
+            placeholder="https://"
             {...register("profileLink", {
               required: true,
               pattern:
@@ -64,10 +63,30 @@ export default function AbuseProfileForm() {
           />
         </div>
         <div className="form-section">
-          <h3>Categories</h3>
+          <h3 className="text-semi-white form-header">Abusive post URL<span className="text-red-700">*</span></h3>
+          <input
+            className="form-input"
+            placeholder="https://"
+            {...register("linkToPost", {
+              required: true,
+              pattern:
+                /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/,
+            })}
+          />
+        </div>
+        <hr className="text-semi-white" />
+        <div className="form-section">
+          <h3 className="text-semi-white form-header">
+            Choose report reason(s)<span className="text-red-700">*</span>
+          </h3>
           <div className="checkbox-grid">
             <span className="checkbox-item">
-              <label htmlFor="fraud">Fraud</label>
+              <label
+                htmlFor="fraud"
+                className={categories.includes("fraud") && "active-checkbox"}
+              >
+                Fraud
+              </label>
               <input
                 className="form-checkbox"
                 name="fraud"
@@ -77,7 +96,12 @@ export default function AbuseProfileForm() {
               />
             </span>
             <span className="checkbox-item">
-              <label htmlFor="spam">spam</label>
+              <label
+                htmlFor="spam"
+                className={categories.includes("spam") && "active-checkbox"}
+              >
+                spam
+              </label>
               <input
                 className="form-checkbox"
                 name="spam"
@@ -87,7 +111,14 @@ export default function AbuseProfileForm() {
               />
             </span>
             <span className="checkbox-item">
-              <label htmlFor="IdentityTheft">Identity Theft</label>
+              <label
+                htmlFor="IdentityTheft"
+                className={
+                  categories.includes("IdentityTheft") && "active-checkbox"
+                }
+              >
+                Identity Theft
+              </label>
               <input
                 className="form-checkbox"
                 name="IdentityTheft"
@@ -97,7 +128,14 @@ export default function AbuseProfileForm() {
               />
             </span>
             <span className="checkbox-item">
-              <label htmlFor="Cyberbullying">Cyber bullying</label>
+              <label
+                htmlFor="Cyberbullying"
+                className={
+                  categories.includes("Cyberbullying") && "active-checkbox"
+                }
+              >
+                Cyber bullying
+              </label>
               <input
                 className="form-checkbox"
                 name="Cyberbullying"
@@ -106,10 +144,15 @@ export default function AbuseProfileForm() {
                 onChange={onChange}
               />
             </span>
-          </div>
-          <div className="checkbox-grid">
             <span className="checkbox-item">
-              <label htmlFor="PhishingScams">Phishing Scams</label>
+              <label
+                htmlFor="PhishingScams"
+                className={
+                  categories.includes("PhishingScams") && "active-checkbox"
+                }
+              >
+                Phishing Scams
+              </label>
               <input
                 className="form-checkbox"
                 name="PhishingScams"
@@ -119,7 +162,14 @@ export default function AbuseProfileForm() {
               />
             </span>
             <span className="checkbox-item">
-              <label htmlFor="Propaganda">Propaganda</label>
+              <label
+                htmlFor="Propaganda"
+                className={
+                  categories.includes("Propaganda") && "active-checkbox"
+                }
+              >
+                Propaganda
+              </label>
               <input
                 className="form-checkbox"
                 name="Propaganda"
@@ -129,7 +179,12 @@ export default function AbuseProfileForm() {
               />
             </span>
             <span className="checkbox-item">
-              <label htmlFor="FakeNews">Fake News</label>
+              <label
+                htmlFor="FakeNews"
+                className={categories.includes("FakeNews") && "active-checkbox"}
+              >
+                Fake News
+              </label>
               <input
                 className="form-checkbox"
                 name="FakeNews"
@@ -139,7 +194,13 @@ export default function AbuseProfileForm() {
               />
             </span>
             <span className="checkbox-item">
-              <label htmlFor="IntellectualPropertyTheft">
+              <label
+                htmlFor="IntellectualPropertyTheft"
+                className={
+                  categories.includes("IntellectualPropertyTheft") &&
+                  "active-checkbox"
+                }
+              >
                 Intellectual Property Theft
               </label>
               <input
@@ -150,10 +211,15 @@ export default function AbuseProfileForm() {
                 onChange={onChange}
               />
             </span>
-          </div>
-          <div className="checkbox-grid">
             <span className="checkbox-item">
-              <label htmlFor="PrivacyInvasion">Privacy Invasion</label>
+              <label
+                htmlFor="PrivacyInvasion"
+                className={
+                  categories.includes("PrivacyInvasion") && "active-checkbox"
+                }
+              >
+                Privacy Invasion
+              </label>
               <input
                 className="form-checkbox"
                 name="PrivacyInvasion"
@@ -163,7 +229,12 @@ export default function AbuseProfileForm() {
               />
             </span>
             <span className="checkbox-item">
-              <label htmlFor="Scamming">Scamming</label>
+              <label
+                htmlFor="Scamming"
+                className={categories.includes("Scamming") && "active-checkbox"}
+              >
+                Scamming
+              </label>
               <input
                 className="form-checkbox"
                 name="Scamming"
@@ -173,7 +244,14 @@ export default function AbuseProfileForm() {
               />
             </span>
             <span className="checkbox-item">
-              <label htmlFor="AccountHijacking">Account Hijacking</label>
+              <label
+                htmlFor="AccountHijacking"
+                className={
+                  categories.includes("AccountHijacking") && "active-checkbox"
+                }
+              >
+                Account Hijacking
+              </label>
               <input
                 className="form-checkbox"
                 name="AccountHijacking"
@@ -183,7 +261,15 @@ export default function AbuseProfileForm() {
               />
             </span>
             <span className="checkbox-item">
-              <label htmlFor="MalwareDistribution">Malware Distribution</label>
+              <label
+                htmlFor="MalwareDistribution"
+                className={
+                  categories.includes("MalwareDistribution") &&
+                  "active-checkbox"
+                }
+              >
+                Malware Distribution
+              </label>
               <input
                 className="form-checkbox"
                 name="MalwareDistribution"
@@ -192,10 +278,15 @@ export default function AbuseProfileForm() {
                 onChange={onChange}
               />
             </span>
-          </div>
-          <div className="checkbox-grid">
             <span className="checkbox-item">
-              <label htmlFor="Sextortion">Sextortion</label>
+              <label
+                htmlFor="Sextortion"
+                className={
+                  categories.includes("Sextortion") && "active-checkbox"
+                }
+              >
+                Sextortion
+              </label>
               <input
                 className="form-checkbox"
                 name="Sextortion"
@@ -205,7 +296,15 @@ export default function AbuseProfileForm() {
               />
             </span>
             <span className="checkbox-item">
-              <label htmlFor="TerroristActivities">Terrorist Activities</label>
+              <label
+                htmlFor="TerroristActivities"
+                className={
+                  categories.includes("TerroristActivities") &&
+                  "active-checkbox"
+                }
+              >
+                Terrorist Activities
+              </label>
               <input
                 className="form-checkbox"
                 name="TerroristActivities"
@@ -215,7 +314,14 @@ export default function AbuseProfileForm() {
               />
             </span>
             <span className="checkbox-item">
-              <label htmlFor="HumanTrafficking">Human Trafficking</label>
+              <label
+                htmlFor="HumanTrafficking"
+                className={
+                  categories.includes("HumanTrafficking") && "active-checkbox"
+                }
+              >
+                Human Trafficking
+              </label>
               <input
                 className="form-checkbox"
                 name="HumanTrafficking"
@@ -225,7 +331,12 @@ export default function AbuseProfileForm() {
               />
             </span>
             <span className="checkbox-item">
-              <label htmlFor="Doxxing">Doxxing</label>
+              <label
+                htmlFor="Doxxing"
+                className={categories.includes("Doxxing") && "active-checkbox"}
+              >
+                Doxxing
+              </label>
               <input
                 className="form-checkbox"
                 name="Doxxing"
@@ -234,10 +345,13 @@ export default function AbuseProfileForm() {
                 onChange={onChange}
               />
             </span>
-          </div>
-          <div className="checkbox-grid">
             <span className="checkbox-item">
-              <label htmlFor="Bias">Bias</label>
+              <label
+                htmlFor="Bias"
+                className={categories.includes("Bias") && "active-checkbox"}
+              >
+                Bias
+              </label>
               <input
                 className="form-checkbox"
                 name="Bias"
@@ -247,7 +361,14 @@ export default function AbuseProfileForm() {
               />
             </span>
             <span className="checkbox-item">
-              <label htmlFor="Antisemic">Antisemic</label>
+              <label
+                htmlFor="Antisemic"
+                className={
+                  categories.includes("Antisemic") && "active-checkbox"
+                }
+              >
+                Antisemic
+              </label>
               <input
                 className="form-checkbox"
                 name="Antisemic"
@@ -257,7 +378,14 @@ export default function AbuseProfileForm() {
               />
             </span>
             <span className="checkbox-item">
-              <label htmlFor="FakeProfile">Fake Profile</label>
+              <label
+                htmlFor="FakeProfile"
+                className={
+                  categories.includes("FakeProfile") && "active-checkbox"
+                }
+              >
+                Fake Profile
+              </label>
               <input
                 className="form-checkbox"
                 name="FakeProfile"
@@ -267,7 +395,12 @@ export default function AbuseProfileForm() {
               />
             </span>
             <span className="checkbox-item">
-              <label htmlFor="Phonzi">Phonzi</label>
+              <label
+                htmlFor="Phonzi"
+                className={categories.includes("Phonzi") && "active-checkbox"}
+              >
+                Phonzi
+              </label>
               <input
                 className="form-checkbox"
                 name="Phonzi"
@@ -276,10 +409,15 @@ export default function AbuseProfileForm() {
                 onChange={onChange}
               />
             </span>
-          </div>
-          <div className="checkbox-grid">
             <span className="checkbox-item">
-              <label htmlFor="CryptoFraud">Crypto Fraud</label>
+              <label
+                htmlFor="CryptoFraud"
+                className={
+                  categories.includes("CryptoFraud") && "active-checkbox"
+                }
+              >
+                Crypto Fraud
+              </label>
               <input
                 className="form-checkbox"
                 name="CryptoFraud"
@@ -289,7 +427,14 @@ export default function AbuseProfileForm() {
               />
             </span>
             <span className="checkbox-item">
-              <label htmlFor="PyramidScheme">Pyramid Scheme</label>
+              <label
+                htmlFor="PyramidScheme"
+                className={
+                  categories.includes("PyramidScheme") && "active-checkbox"
+                }
+              >
+                Pyramid Scheme
+              </label>
               <input
                 className="form-checkbox"
                 name="PyramidScheme"
@@ -300,24 +445,24 @@ export default function AbuseProfileForm() {
             </span>
           </div>
         </div>
+        <hr />
         <div className="form-section">
-          <h3>Comment</h3>
+          <h3 className="text-semi-white form-header">Comment</h3>
           <textarea
             className="form-textarea"
             {...register("comment", { maxLength: 1200 })}
           />
         </div>
-        <div className="form-section">
-          <h3>Abusive post URL</h3>
-          <input
-            className="form-input"
-            {...register("linkToPost", {
-              pattern:
-                /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/,
-            })}
-          />
-        </div>
-        <input className="form-submit" type="submit" />
+        <input className="form-submit" type="submit" value="Send report" />
+        <button
+          className="cancel-button"
+          onClick={() => {
+            reset();
+            setCategories([]);
+          }}
+        >
+          Cancel
+        </button>
       </form>
     </div>
   );

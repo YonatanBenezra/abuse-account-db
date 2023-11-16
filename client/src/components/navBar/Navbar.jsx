@@ -104,19 +104,9 @@ const Navbar = () => {
           className={`
           ${
             isActiveRoute(to)
-              ? "font-bold border-b-2 pb-[1.9px] border-[#EEB30D] text-white"
-              : ""
-          }
-            ${
-              label === "Log in" &&
-              "py-2 px-6 border-2 rounded-xl pb-2 border-white/50 bg-white/10"
-            } 
-            ${
-              label === "Sign up"
-                ? "py-2 px-6 border-2 rounded-xl pb-2  bg-white text-black"
-                : " text-semi-white hover:text-white pb-1 nav-effect "
-            }
-        `}
+              ? "font-bold border-b-2 pb-[1.9px] border-[#FFFFFF] text-white bg-[#FFFFFF14] navlink"
+              : "navlink nav-effect"
+          }`}
         >
           {label}
         </Link>
@@ -132,7 +122,7 @@ const Navbar = () => {
         <link rel="icon" href={Logo} />
       </Helmet>
 
-      <div className="relative w-full mx-auto bg-inherit py-3 px-3 lg:flex justify-around items-center h-auto border-b-2 border-white/10 font-lato">
+      <div className="navbar relative w-full mx-auto bg-inherit lg:flex justify-around items-center border-b-2 border-white/10 font-lato">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-black text-xl font-semibold">
             <div className="flex items-center gap-1">
@@ -192,7 +182,7 @@ const Navbar = () => {
             } lg:flex lg:w-auto mt-4 lg:mt-0 cleancode-menu-animation  transition-all duration-300 `}
             id="mobile-menu"
           >
-            <ul className="flex flex-col gap-3 md:gap-8 md:mt-[1.5px] lg:text-left lg:flex-row lg:items-center">
+            <ul className="navlinks-container flex flex-col gap-3 md:gap-8 md:mt-[1.5px] lg:text-left lg:flex-row lg:items-center">
               {[
                 { to: "/home", label: "Home" },
                 { to: "/report", label: "Report account" },
@@ -213,13 +203,18 @@ const Navbar = () => {
             id="mobile-menu"
           >
             <ul className="flex flex-col gap-3 md:gap-3 md:mt-[1.5px] lg:text-left lg:flex-row lg:items-center">
-              {
-              [
-                { to: "/login", label: "Log in" },
-                { to: "/signup", label: "Sign up" },
-              ].map((link) => (
-                <NavLink key={link.to} {...link} />
-              ))}
+              <Link
+                to={"/login"}
+                className="py-2 px-6 border-2 rounded-xl pb-2 border-white/50 bg-white/10"
+              >
+                Log in
+              </Link>
+              <Link
+                to={"/Sign Up"}
+                className="py-2 px-6 border-2 rounded-xl pb-2  bg-white text-black"
+              >
+                Sign up
+              </Link>
             </ul>
           </div>
         </div>

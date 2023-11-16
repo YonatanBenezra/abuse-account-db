@@ -122,7 +122,7 @@ function Home() {
               <input
                 type="text"
                 className="search-input"
-                placeholder="HTTPS://..."
+                placeholder="https://"
                 value={searchTerm}
                 onChange={handleSearchChange}
               />
