@@ -21,7 +21,6 @@ const Login = ({ setIsModalOpen }) => {
       );
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("loggedUser", response.data.data.user._id);
-      alert("Login Successful");
       navigate("/");
       location.reload();
     } catch (error) {

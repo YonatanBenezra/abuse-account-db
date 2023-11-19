@@ -27,7 +27,6 @@ const Signup = ({ setIsModalOpen }) => {
       );
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("loggedUser", response.data.data.user._id);
-      alert("Sign up Successful");
       navigate("/");
       location.reload();
     } catch (err) {
