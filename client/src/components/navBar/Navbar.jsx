@@ -198,30 +198,44 @@ const Navbar = () => {
             </ul>
           </div>
         </div>
-        <div className="flex items-center">
+        {localStorage.getItem("loggedUser") ? (
           <div
-            className={`${
-              isMenuOpen ? "block" : "hidden"
-            } lg:flex lg:w-auto mt-4 lg:mt-0 cleancode-menu-animation  transition-all duration-300 `}
-            id="mobile-menu"
+            onClick={() => {
+              localStorage.removeItem("token");
+              localStorage.removeItem("loggedUser");
+              location.reload();
+            }}
+            className="py-2 px-6 border-2 rounded-xl pb-2 border-white/50 bg-white/10 cursor-pointer"
           >
-            <ul className="flex flex-col gap-3 md:gap-3 md:mt-[1.5px] lg:text-left lg:flex-row lg:items-center">
-              <div
-                onClick={() => setIsModalOpen("login")}
-                className="py-2 px-6 border-2 rounded-xl pb-2 border-white/50 bg-white/10 cursor-pointer"
-              >
-                Log in
-              </div>
-              <div
-                onClick={() => setIsModalOpen("signup")}
-                className="py-2 px-6 border-2 rounded-xl pb-2  bg-white text-black cursor-pointer"
-              >
-                Sign up
-              </div>
-            </ul>
+            Log out
           </div>
-        </div>
+        ) : (
+          <div className="flex items-center">
+            <div
+              className={`${
+                isMenuOpen ? "block" : "hidden"
+              } lg:flex lg:w-auto mt-4 lg:mt-0 cleancode-menu-animation  transition-all duration-300 `}
+              id="mobile-menu"
+            >
+              <ul className="flex flex-col gap-3 md:gap-3 md:mt-[1.5px] lg:text-left lg:flex-row lg:items-center">
+                <div
+                  onClick={() => setIsModalOpen("login")}
+                  className="py-2 px-6 border-2 rounded-xl pb-2 border-white/50 bg-white/10 cursor-pointer"
+                >
+                  Log in
+                </div>
+                <div
+                  onClick={() => setIsModalOpen("signup")}
+                  className="py-2 px-6 border-2 rounded-xl pb-2  bg-white text-black cursor-pointer"
+                >
+                  Sign up
+                </div>
+              </ul>
+            </div>
+          </div>
+        )}
       </div>
+
       {isModalOpen && (
         <div className="modal-container">
           {isModalOpen === "login" && (
