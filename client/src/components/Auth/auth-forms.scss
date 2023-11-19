@@ -1,77 +1,72 @@
 .auth-form {
+  background: linear-gradient(0deg, #212121, #212121),
+    linear-gradient(0deg, rgba(33, 33, 33, 1), rgba(33, 33, 33, 1)),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08));
+  height: 446px;
+  width: 544px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 18px;
+  label {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0.02em;
+  }
+  .submit-button {
+    background: rgba(255, 255, 255, 1);
+    color: black;
+    border-radius: 12px;
+    padding: 10px 24px 10px 24px;
+  }
+  .form-input {
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 10px 16px 10px 16px;
+  }
+  form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
-    background-color: #f5f5f5;
-  
-    h2 {
+    width: 100%;
+    height: 60%;
+    max-height: 250px;
+    justify-content: space-evenly;
+
+    input {
+      padding: 10px;
       margin-bottom: 1rem;
-      color: #333;
-      font-size: 2rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
-  
+  }
+
+  .error-message {
+    color: red;
+    margin-bottom: 1rem;
+  }
+
+  .nav-link {
+    color: #0645ad;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+.signup {
+  height: 540px;
+}
+// Responsive adjustments
+@media (max-width: 480px) {
+  .auth-form {
     form {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      max-width: 400px;
-      background: #ffffff;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      margin-bottom: 1rem;
-  
-      label {
-        font-size: 1rem;
-        margin-bottom: 0.5rem;
-      }
-  
-      input {
-        padding: 10px;
-        margin-bottom: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-      }
-  
-      button {
-        padding: 10px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-  
-        &:hover {
-          background-color: #0056b3;
-        }
-      }
-    }
-  
-    .error-message {
-      color: red;
-      margin-bottom: 1rem;
-    }
-  
-    .nav-link {
-      color: #0645ad;
-      text-decoration: none;
-  
-      &:hover {
-        text-decoration: underline;
-      }
+      padding: 1rem;
     }
   }
-  
-  // Responsive adjustments
-  @media (max-width: 480px) {
-    .auth-form {
-      form {
-        padding: 1rem;
-      }
-    }
-  }
-  
+}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
 
-const Signup = () => {
+const Signup = ({ setIsModalOpen }) => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -36,18 +36,33 @@ const Signup = () => {
   };
 
   return (
-    <div className="auth-form">
-      <h2>Signup</h2>
+    <div className="auth-form signup">
+      <div className="flex justify-between w-full">
+        <h2>Create account</h2>
+        <span className="cursor-pointer" onClick={() => setIsModalOpen(false)}>
+          X
+        </span>
+      </div>
       <form onSubmit={(e) => onSubmit(e)}>
+        <label className="mb-1 text-semi-white" htmlFor="name">
+          Username
+        </label>
         <input
+          className="form-input"
           type="text"
+          id="name"
           name="name"
           value={name}
           onChange={(e) => onChange(e)}
           placeholder="Name"
           required
         />
+        <label className="mb-1 text-semi-white" htmlFor="email">
+          email
+        </label>
         <input
+          className="form-input"
+          id="email"
           type="email"
           name="email"
           value={email}
@@ -55,7 +70,12 @@ const Signup = () => {
           placeholder="Email"
           required
         />
+        <label className="mb-1 text-semi-white" htmlFor="password">
+          password
+        </label>
         <input
+          className="form-input"
+          id="password"
           type="password"
           name="password"
           value={password}
@@ -63,7 +83,12 @@ const Signup = () => {
           placeholder="Password"
           required
         />
+        <label className="mb-1 text-semi-white" htmlFor="passwordConfirm">
+          Confirm password
+        </label>
         <input
+          id="passwordConfirm"
+          className="form-input"
           type="password"
           name="passwordConfirm"
           value={passwordConfirm}
@@ -71,9 +96,16 @@ const Signup = () => {
           placeholder="Confirm Password"
           required
         />
-        <button type="submit">Sign Up</button>
+        <button type="submit" className="submit-button">
+          Sign Up
+        </button>
       </form>
-      <NavLink to="/login">Allready have an account? Login now</NavLink>
+      <span
+        className="text-semi-white cursor-pointer self-center"
+        onClick={() => setIsModalOpen("login")}
+      >
+        Already have an account? <span className="text-white">Login now</span>
+      </span>
     </div>
   );
 };

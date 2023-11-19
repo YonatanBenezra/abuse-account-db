@@ -9,6 +9,25 @@
   hr {
     border-top-color: rgba(255, 255, 255, 0.08);
   }
+  .form-input,
+  .form-textarea {
+    width: 97%;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px 16px 10px 16px;
+    margin-right: 10px;
+    background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.16),
+      rgba(255, 255, 255, 0.16)
+    );
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.8);
+    }
+  }
   .cancel-button {
     padding: 10px 24px 10px 24px;
     border-radius: 12px;
@@ -17,6 +36,25 @@
     border: 2px solid rgba(255, 255, 255, 0.08);
     background-color: rgba(255, 255, 255, 0.08);
     margin-left: 1rem;
+  }
+
+  label {
+    cursor: pointer;
+    border-radius: 123px;
+    padding: 8px 16px 8px 16px;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.08);
+    min-width: max-content;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    &:focus {
+      outline: none !important;
+    }
   }
 }
 
@@ -30,26 +68,6 @@
 
 .form-section {
   margin-bottom: 20px;
-}
-
-.form-input,
-.form-textarea {
-  width: 97%;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 10px 16px 10px 16px;
-  margin-right: 10px;
-  background: linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 0.16),
-    rgba(255, 255, 255, 0.16)
-  );
-  border-radius: 12px;
-  border: 2px solid rgba(255, 255, 255, 0.08);
-  &::placeholder {
-    color: rgba(255, 255, 255, 0.8);
-  }
 }
 
 .form-textarea {
@@ -82,25 +100,6 @@
   margin-right: 5px;
   cursor: pointer;
   display: none;
-}
-
-label {
-  cursor: pointer;
-  border-radius: 123px;
-  padding: 8px 16px 8px 16px;
-  border: 2px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.08);
-  min-width: max-content;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  &:focus {
-    outline: none !important;
-  }
 }
 
 .form-submit {

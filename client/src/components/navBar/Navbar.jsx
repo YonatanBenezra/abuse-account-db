@@ -59,11 +59,14 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import "./navbar.scss";
-import Logo from "../../assets/facebook.svg";
+import Logo from "../../assets/logo.png";
+import Login from "../Auth/Login";
+import SignUp from "../Auth/SignUp";
 
 const Navbar = () => {
   // React Hooks and relevant imports
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const location = useLocation();
   const dropdownRef = useRef(null);
   const from = location.state?.from?.pathname || "/";
@@ -119,7 +122,7 @@ const Navbar = () => {
       className={`top-0 backdrop-blur-sm z-10 w-full fixed md:sticky color-background: #FFFFFF99`}
     >
       <Helmet>
-        <link rel="icon" href={Logo} />
+        <link rel="icon" href={Logo} className="navbar-logo" />
       </Helmet>
 
       <div className="navbar relative w-full mx-auto bg-inherit lg:flex justify-around items-center border-b-2 border-white/10 font-lato">
@@ -187,7 +190,7 @@ const Navbar = () => {
                 { to: "/home", label: "Home" },
                 { to: "/report", label: "Report account" },
                 { to: "/about", label: "About" },
-                { to: "/hotitworks", label: "How it works" },
+                { to: "/howitworks", label: "How it works" },
                 { to: "/statistics", label: "Statistics" },
               ].map((link) => (
                 <NavLink key={link.to} {...link} />
@@ -203,22 +206,32 @@ const Navbar = () => {
             id="mobile-menu"
           >
             <ul className="flex flex-col gap-3 md:gap-3 md:mt-[1.5px] lg:text-left lg:flex-row lg:items-center">
-              <Link
-                to={"/login"}
-                className="py-2 px-6 border-2 rounded-xl pb-2 border-white/50 bg-white/10"
+              <div
+                onClick={() => setIsModalOpen("login")}
+                className="py-2 px-6 border-2 rounded-xl pb-2 border-white/50 bg-white/10 cursor-pointer"
               >
                 Log in
-              </Link>
-              <Link
-                to={"/Sign Up"}
-                className="py-2 px-6 border-2 rounded-xl pb-2  bg-white text-black"
+              </div>
+              <div
+                onClick={() => setIsModalOpen("signup")}
+                className="py-2 px-6 border-2 rounded-xl pb-2  bg-white text-black cursor-pointer"
               >
                 Sign up
-              </Link>
+              </div>
             </ul>
           </div>
         </div>
       </div>
+      {isModalOpen && (
+        <div className="modal-container">
+          {isModalOpen === "login" && (
+            <Login setIsModalOpen={setIsModalOpen}></Login>
+          )}
+          {isModalOpen === "signup" && (
+            <SignUp setIsModalOpen={setIsModalOpen}></SignUp>
+          )}
+        </div>
+      )}
     </nav>
   );
 };

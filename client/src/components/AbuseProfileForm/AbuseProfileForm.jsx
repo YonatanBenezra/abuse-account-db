@@ -51,7 +51,9 @@ export default function AbuseProfileForm() {
       <h1 className="form-title">Report Account</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-section">
-          <h3 className="text-semi-white form-header">Abusive account URL<span className="text-red-700">*</span></h3>
+          <h3 className="text-semi-white form-header">
+            Abusive account URL<span className="text-red-700">*</span>
+          </h3>
           <input
             className="form-input"
             placeholder="https://"
@@ -63,12 +65,11 @@ export default function AbuseProfileForm() {
           />
         </div>
         <div className="form-section">
-          <h3 className="text-semi-white form-header">Abusive post URL<span className="text-red-700">*</span></h3>
+          <h3 className="text-semi-white form-header">Abusive post URL</h3>
           <input
             className="form-input"
             placeholder="https://"
             {...register("linkToPost", {
-              required: true,
               pattern:
                 /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/,
             })}

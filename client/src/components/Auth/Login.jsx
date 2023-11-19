@@ -3,7 +3,7 @@ import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./auth-forms.scss";
 
-const Login = () => {
+const Login = ({ setIsModalOpen }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,18 +35,31 @@ const Login = () => {
 
   return (
     <div className="auth-form">
-      <h2>Login</h2>
+      <div className="flex justify-between w-full">
+        <span className="text-white">Login</span>
+        <span className="cursor-pointer" onClick={() => setIsModalOpen(false)}>
+          X
+        </span>
+      </div>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       <form onSubmit={handleLogin}>
+        <label htmlFor="email" className="text-semi-white">
+          Username or email
+        </label>
         <input
+          className="form-input"
           type="email"
           name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="email"
+          placeholder="Your username or email here"
           required
         />
+        <label htmlFor="password" className="text-semi-white">
+          Password
+        </label>
         <input
+          className="form-input"
           type="password"
           name="password"
           value={password}
@@ -54,11 +67,13 @@ const Login = () => {
           placeholder="password"
           required
         />
-        <button type="submit">Login</button>
+        <button type="submit" className="submit-button">
+          Login
+        </button>
       </form>
-      <NavLink to="/signup" className="nav-link">
-        Don't have an account? Signup now
-      </NavLink>
+      <span onClick={() => setIsModalOpen("signup")} className="text-semi-white cursor-pointer self-center">
+        No account yet? <span className="text-white">Sign up</span>
+      </span>
     </div>
   );
 };

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./profile-card.scss"; // Make sure this is correctly pointing to your SCSS file
 import { useLocation } from "react-router-dom";
-
+import { formatDate } from "../../utils";
+import { extractAfterSlash } from "../../utils";
 function FoundResults() {
   const [reports, setReports] = useState([]);
   const percentages = [25, 50, 75, 100];
@@ -12,18 +13,7 @@ function FoundResults() {
     setReports(location.state.reports);
   }, [location.state.reports]);
 
-  function formatDate(dateString) {
-    const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // January is 0!
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
-  }
 
-  function extractAfterSlash(url) {
-    const parts = url.split("/");
-    return parts[parts.length - 1]; // returns the last element
-  }
 
   return (
     <div className="report-card-container">
@@ -69,7 +59,16 @@ function FoundResults() {
           <div className="reputation">
             <h6>Reputation level</h6>
             <hr />
-            <div></div>
+            <div className="progress-bar-container">
+              <div className="progress-bar">
+                <span
+                  className="white-line"
+                  style={{ left: `${reports.length}%` }}
+                >
+                  <span className="reports-number">{reports.length}%</span>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
         <div>
@@ -85,7 +84,6 @@ function FoundResults() {
             {reports.length > 0 ? (
               reports.map((report, index) => (
                 <div key={index} className="h-14 flex overflow-hidden p-3 row">
-                  {console.log(report)}
                   <span className="w-44 inline-block overflow-hidden mr-1">
                     {extractAfterSlash(report.abuseProfile.profileLink)}
                   </span>
@@ -101,10 +99,9 @@ function FoundResults() {
                     )}
                   </span>
                   <a
-                    className="w5 inline-block overflow-hidden mr-1"
+                    className="w5 inline-block overflow-hidden mr-1 external-link"
                     href={report.linkToPost}
                   >
-                    To
                   </a>
                 </div>
               ))

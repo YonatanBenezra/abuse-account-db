@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./found-results.scss";
 import { NavLink, useLocation } from "react-router-dom";
 import axios from "axios";
-
+import { extractAfterSlash, extractBeforeSlash } from "../../utils";
 function FoundResults() {
   const [searchTerm, setSearchTerm] = useState("");
   const [abuseProfiles, setAbuseProfiles] = useState([]);
@@ -62,12 +62,8 @@ function FoundResults() {
         </form>
       </div>
 
-      <div className="explanation-container">
-        <p>We found {abuseProfiles.length} relevant profiles</p>
-      </div>
-
       <div className="profile-cards">
-        <h2>Relevant Profiles</h2>
+        <p className="subtitle mb-3">Found {abuseProfiles.length} accounts:</p>
         <div className="card-container">
           {abuseProfiles.map((abuseProfile, index) => (
             <div className="card" key={index}>
@@ -79,23 +75,25 @@ function FoundResults() {
                 }}
                 className="card-link"
               >
-                <div className="profile-details">
-                {/* <div
-                  className="social-image"
-                ></div> */}
-                  <span className="profile-link">
-                    {abuseProfile.profileLink}
-                  </span>
-
-
-
-
-                  
-                  <span className="report-count">
-                    Number of reports:{" "}
-                    {reports[index]?.data?.data?.data.length || 0}
-                  </span>
+                <div className="flex flex-row items-center">
+                  <span
+                    className={`${
+                      abuseProfile.profileLink.includes("facebook")
+                        ? "facebook-logo"
+                        : ""
+                    }`}
+                  ></span>
+                  <div className="flex flex-col">
+                    <span className="profile-link">
+                      {extractAfterSlash(abuseProfile.profileLink)}
+                    </span>
+                    <span className="subtitle">{extractBeforeSlash(abuseProfile.profileLink)}</span>
+                  </div>
                 </div>
+                <span className="report-count p-3 flex flex-col">
+                  <span>{reports[index]?.data?.data?.data.length || 0}% reputation</span>
+                  <span className="subtitle">{reports[index]?.data?.data?.data.length || 0} reports</span>
+                </span>
               </NavLink>
             </div>
           ))}
