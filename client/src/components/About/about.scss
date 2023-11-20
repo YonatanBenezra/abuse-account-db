@@ -7,4 +7,19 @@
     letter-spacing: 0.02em;
     text-align: center;
   }
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  p {
+    max-width: 1000px;
+    width: 70%;
+    margin-bottom: 1rem;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.6);
+  }
 }

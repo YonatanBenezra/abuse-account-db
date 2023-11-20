@@ -63,10 +63,9 @@ import Logo from "../../assets/logo.png";
 import Login from "../Auth/Login";
 import SignUp from "../Auth/SignUp";
 
-const Navbar = () => {
+const Navbar = ({ isModalOpen, setIsModalOpen }) => {
   // React Hooks and relevant imports
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const location = useLocation();
   const dropdownRef = useRef(null);
   const from = location.state?.from?.pathname || "/";
@@ -122,18 +121,14 @@ const Navbar = () => {
       className={`top-0 backdrop-blur-sm z-10 w-full fixed md:sticky color-background: #FFFFFF99`}
     >
       <Helmet>
-        <link rel="icon" href={Logo} className="navbar-logo" />
+        <link rel="icon" href={Logo} />
       </Helmet>
 
-      <div className="navbar relative w-full mx-auto bg-inherit lg:flex justify-around items-center border-b-2 border-white/10 font-lato">
+      <div className="navbar relative w-full mx-auto bg-inherit lg:flex justify-around items-center border-b-2 border-white/10 font-lat justify-evenly">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-black text-xl font-semibold">
             <div className="flex items-center gap-1">
-              <img
-                className="w-[8rem] md:w-[2rem] logo"
-                src={Logo}
-                alt="logo"
-              />
+              <img className="navbar-logo" src={Logo} alt="logo" />
             </div>
           </Link>
           <div className="ml-3 lg:hidden">

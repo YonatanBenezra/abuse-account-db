@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import "./abuse-profile-form.scss";
 import { useNavigate } from "react-router-dom";
-export default function AbuseProfileForm() {
+export default function AbuseProfileForm({ setIsModalOpen }) {
   const navigate = useNavigate();
 
   const [categories, setCategories] = useState([]);
@@ -17,14 +17,18 @@ export default function AbuseProfileForm() {
   };
 
   useEffect(() => {
-    localStorage.getItem("token") ? "" : navigate("/login");
+    localStorage.getItem("token") ? "" : setIsModalOpen("login");
     checkDbLength();
+    reset();
+    setCategories([]);
   }, []);
 
   const onSubmit = (data) => {
-    if (categories.length > 0) {
+    localStorage.getItem("token") ? "" : setIsModalOpen("login");
+    if (categories.length > 0 && localStorage.getItem("token")) {
       data.categories = categories;
       data.uploadedBy = localStorage.getItem("loggedUser");
+      console.log(data.uploadedBy);
       axios
         .post(`${import.meta.env.VITE_API_URL}/api/abuseprofiles/`, data)
         .then(() => {
@@ -34,7 +38,9 @@ export default function AbuseProfileForm() {
           alert("report created successfully");
         });
     } else {
-      alert("please contain at least 1 category");
+      if (categories.length === 0) {
+        alert("please contain at least 1 category");
+      }
     }
   };
   const onChange = (event) => {

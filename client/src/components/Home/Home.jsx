@@ -21,6 +21,27 @@ function Home() {
   };
 
   useEffect(() => {
+    const handleScroll = () => {
+      const position = window.pageYOffset;
+      const section1Top = document.getElementById("hero").offsetTop;
+      const section2Top =
+        document.getElementById("reported-accounts").offsetTop;
+
+      if (position >= section1Top && position < section2Top) {
+        setNumberPressed(1);
+      } else if (position >= section2Top) {
+        setNumberPressed(2);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
     if (recentReportProfiles.length === 0) {
       axios
         .get(`${import.meta.env.VITE_API_URL}/api/abuseprofiles/12`)

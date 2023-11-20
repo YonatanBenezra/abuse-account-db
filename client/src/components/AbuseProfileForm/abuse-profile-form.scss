@@ -72,7 +72,7 @@
 
 .form-textarea {
   resize: none;
-  height: 135px;
+  height: 115px;
 }
 .form-header {
   font-size: 16px;
@@ -87,7 +87,7 @@
   flex-wrap: wrap;
 }
 .active-checkbox {
-  background: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 1) !important;
   color: black;
 }
 .checkbox-item {

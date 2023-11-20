@@ -21,8 +21,7 @@ const Login = ({ setIsModalOpen }) => {
       );
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("loggedUser", response.data.data.user._id);
-      navigate("/");
-      location.reload();
+      setIsModalOpen(false);
     } catch (error) {
       if (error.response) {
         setErrorMessage(error.response.data.message);
@@ -70,7 +69,10 @@ const Login = ({ setIsModalOpen }) => {
           Login
         </button>
       </form>
-      <span onClick={() => setIsModalOpen("signup")} className="text-semi-white cursor-pointer self-center">
+      <span
+        onClick={() => setIsModalOpen("signup")}
+        className="text-semi-white cursor-pointer self-center"
+      >
         No account yet? <span className="text-white">Sign up</span>
       </span>
     </div>

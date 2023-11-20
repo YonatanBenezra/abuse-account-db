@@ -13,8 +13,6 @@ function FoundResults() {
     setReports(location.state.reports);
   }, [location.state.reports]);
 
-
-
   return (
     <div className="report-card-container">
       {/* The search bar is commented out, but I'm leaving it in case you want to use it later */}
@@ -40,20 +38,20 @@ function FoundResults() {
             <h6 className="mb-3">Profile information</h6>
             <hr />
             <div className="mt-3 mb-3">
-              <span>Info #1</span>
-              <span className="text-white ml-20">Text Here</span>
+              <span>Profile's full name</span>
+              <span className="text-white ml-20">No information yet</span>
             </div>
             <div className="mb-3">
-              <span>Info #2</span>
-              <span className="text-white ml-20">Text Here</span>
+              <span>Username</span>
+              <span className="text-white ml-20">No information yet</span>
             </div>
             <div className="mb-3">
-              <span>Info #3</span>
-              <span className="text-white ml-20">Text Here</span>
+              <span>Country/Language</span>
+              <span className="text-white ml-20">No information yet</span>
             </div>
             <div className="mb-3">
-              <span>Info #4</span>
-              <span className="text-white ml-20">Text Here</span>
+              <span>Num of reports</span>
+              <span className="text-white ml-20">{reports?.length}</span>
             </div>
           </div>
           <div className="reputation">
@@ -85,24 +83,33 @@ function FoundResults() {
               reports.map((report, index) => (
                 <div key={index} className="h-14 flex overflow-hidden p-3 row">
                   <span className="w-44 inline-block overflow-hidden mr-1">
-                    {extractAfterSlash(report.abuseProfile.profileLink)}
+                    {console.log(report)}
+                    {report?.uploadedBy?.name
+                      ? report?.uploadedBy?.name
+                      : "Anonymous"}
                   </span>
                   <span className="w-32 inline-block overflow-hidden mr-1">
-                    {formatDate(report.abuseProfile.updatedAt)}
+                    {report.updatedAt
+                      ? formatDate(report?.updatedAt)
+                      : "Unknown"}
                   </span>
                   <span className="w-80 inline-block overflow-hidden mr-1">
-                    {report.comment}
+                    {report.comment ? report?.comment : "No comment"}
                   </span>
                   <span className="w-80 inline-block overflow-hidden mr-1">
-                    {report.categories.map(
-                      (category, index) => `${category}, `
+                    {report?.categories.map(
+                      (category, index) =>
+                        `${category}${
+                          index <= report.categories.length - 2 ? "," : ""
+                        }  `
                     )}
+                    {report?.categories?.length < 1 && "No categories"}
                   </span>
                   <a
                     className="w5 inline-block overflow-hidden mr-1 external-link"
                     href={report.linkToPost}
-                  >
-                  </a>
+                    alt="link to post"
+                  ></a>
                 </div>
               ))
             ) : (
