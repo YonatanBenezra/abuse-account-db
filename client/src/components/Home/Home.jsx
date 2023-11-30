@@ -26,10 +26,13 @@ function Home() {
       const section1Top = document.getElementById("hero").offsetTop;
       const section2Top =
         document.getElementById("reported-accounts").offsetTop;
-
-      if (position >= section1Top && position < section2Top) {
+      console.log(position+95);
+      console.log(section2Top);
+      if (position+101 < section2Top) {
+        console.log("here")
         setNumberPressed(1);
-      } else if (position >= section2Top) {
+      } else if (position+100 >= section2Top) {
+        console.log("here2")
         setNumberPressed(2);
       }
     };
@@ -117,7 +120,7 @@ function Home() {
           >
             2
           </Link>
-          <Link
+          {/* <Link
             activeClass="active"
             to="hero"
             spy={true}
@@ -130,7 +133,7 @@ function Home() {
             onClick={() => setNumberPressed(3)}
           >
             3
-          </Link>
+          </Link> */}
         </span>
         <div className="section-1 h-screen w-full" id="hero">
           <h1 className="title">REPORT AN ABUSIVE ACCOUNT</h1>

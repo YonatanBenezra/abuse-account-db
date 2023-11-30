@@ -37,18 +37,23 @@ function FoundResults() {
           <div className="profile-information">
             <h6 className="mb-3">Profile information</h6>
             <hr />
-            <div className="mt-3 mb-3">
+            {/* <div className="mt-3 mb-3">
               <span>Profile's full name</span>
               <span className="text-white ml-20">No information yet</span>
-            </div>
+            </div> */}
             <div className="mb-3">
-              <span>Username</span>
-              <span className="text-white ml-20">No information yet</span>
+              <span>Username/id</span>
+              <span className="text-white ml-20">
+                {location.state.profileLink.replace(
+                  "facebook.com/profile.php?id=",
+                  ""
+                )}
+              </span>
             </div>
-            <div className="mb-3">
+            {/* <div className="mb-3">
               <span>Country/Language</span>
               <span className="text-white ml-20">No information yet</span>
-            </div>
+            </div> */}
             <div className="mb-3">
               <span>Num of reports</span>
               <span className="text-white ml-20">{reports?.length}</span>
@@ -58,13 +63,16 @@ function FoundResults() {
             <h6>Reputation level</h6>
             <hr />
             <div className="progress-bar-container">
+              <div className="confident-level text-white">
+                Confident of abuse is {reports.length}%
+              </div>
               <div className="progress-bar">
-                <span
+                {/* <span
                   className="white-line"
                   style={{ left: `${reports.length}%` }}
                 >
                   <span className="reports-number">{reports.length}%</span>
-                </span>
+                </span> */}
               </div>
             </div>
           </div>
@@ -83,7 +91,6 @@ function FoundResults() {
               reports.map((report, index) => (
                 <div key={index} className="h-14 flex overflow-hidden p-3 row">
                   <span className="w-44 inline-block overflow-hidden mr-1">
-                    {console.log(report)}
                     {report?.uploadedBy?.name
                       ? report?.uploadedBy?.name
                       : "Anonymous"}
@@ -124,7 +131,9 @@ function FoundResults() {
           You may request to takedown any associated reports. We will attempt to
           verify your ownership.
         </h6>
-        <div className="verify-button cursor-pointer">Verify ownership</div>
+        <a href="mailto:lior@trionet.co.il">
+          <div className="verify-button cursor-pointer">Verify ownership</div>
+        </a>
       </div>
     </div>
   );

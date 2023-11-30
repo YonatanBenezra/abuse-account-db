@@ -186,7 +186,7 @@ const Navbar = ({ isModalOpen, setIsModalOpen }) => {
                 { to: "/report", label: "Report account" },
                 { to: "/about", label: "About" },
                 { to: "/howitworks", label: "How it works" },
-                { to: "/statistics", label: "Statistics" },
+                // { to: "/statistics", label: "Statistics" },
               ].map((link) => (
                 <NavLink key={link.to} {...link} />
               ))}
