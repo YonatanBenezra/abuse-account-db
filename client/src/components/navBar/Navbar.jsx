@@ -198,7 +198,7 @@ const Navbar = ({ isModalOpen, setIsModalOpen }) => {
             onClick={() => {
               localStorage.removeItem("token");
               localStorage.removeItem("loggedUser");
-              location.reload();
+              window.location.reload();
             }}
             className="py-2 px-6 border-2 rounded-xl pb-2 border-white/50 bg-white/10 cursor-pointer"
           >

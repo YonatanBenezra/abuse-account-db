@@ -26,13 +26,10 @@ function Home() {
       const section1Top = document.getElementById("hero").offsetTop;
       const section2Top =
         document.getElementById("reported-accounts").offsetTop;
-      console.log(position+95);
-      console.log(section2Top);
+
       if (position+101 < section2Top) {
-        console.log("here")
         setNumberPressed(1);
       } else if (position+100 >= section2Top) {
-        console.log("here2")
         setNumberPressed(2);
       }
     };

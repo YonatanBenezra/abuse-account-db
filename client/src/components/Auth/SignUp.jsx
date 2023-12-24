@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 const Signup = ({ setIsModalOpen }) => {
   const navigate = useNavigate();
-
+  const [doesExist, setDoesExist] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,7 +29,8 @@ const Signup = ({ setIsModalOpen }) => {
       localStorage.setItem("loggedUser", response.data.data.user._id);
       setIsModalOpen(false);
     } catch (err) {
-      console.error(err.response.data);
+      setDoesExist(true);
+      // console.error(err.response.data);
     }
   };
 
@@ -55,11 +56,14 @@ const Signup = ({ setIsModalOpen }) => {
           placeholder="Name"
           required
         />
-        <label className="mb-1 text-semi-white" htmlFor="email">
+        <label
+          className={`mb-1 text-semi-white ${doesExist && "error-text"}`}
+          htmlFor="email"
+        >
           email
         </label>
         <input
-          className="form-input"
+          className={`form-input ${doesExist && "error-input"}`}
           id="email"
           type="email"
           name="email"
@@ -68,6 +72,17 @@ const Signup = ({ setIsModalOpen }) => {
           placeholder="Email"
           required
         />
+        {doesExist && (
+          <p className="text-semi-white self-center">
+            Email Already exists, Is it you?{" "}
+            <span
+              className="text-white cursor-pointer"
+              onClick={() => setIsModalOpen("login")}
+            >
+              Login now
+            </span>
+          </p>
+        )}
         <label className="mb-1 text-semi-white" htmlFor="password">
           password
         </label>
